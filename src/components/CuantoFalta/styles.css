@@ -1,6 +1,6 @@
 
-.textInAnimation{
-    animation: textInAnimation 1s ease 0s 1 normal forwards;
+.loadedPageAnimation{
+    animation: elementAnimation 1s ease 0s 1 normal forwards;
 }
 
 .image-container {
@@ -8,7 +8,7 @@
 }
 
 
-@keyframes textInAnimation {
+@keyframes elementAnimation {
 	0% {
 		opacity: 0;
 		transform: translateY(-250px);

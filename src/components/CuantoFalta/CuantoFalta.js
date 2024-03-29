@@ -1,10 +1,14 @@
 import React, { useState , useEffect } from 'react';
 
 // utils import
-import {fetchFromAPI , distanceBetweenTwoPoints, extractArrayWithAllTripHeadsigns} from '../utils';
+import {fetchFromAPI , distanceBetweenTwoPoints, extractArrayWithAllRoutesShortNames} from '../utils';
 
 // components import
 import LandingPage from '../LandingPage/LandingPage';
+import BondiAccordion from '../BondiAccordion/BondiAccordion';
+
+// styles import
+import './styles.css';
 
 // API Credentials
 const CLIENT_ID = 'a2a9c582983b4d4685ba50ca65048398';
@@ -34,7 +38,7 @@ const CuantoFalta = () => {
         };
 
         const options = {enableHighAccuracy: true,
-          timeout: 5000,
+          timeout: Infinity,
           maximumAge: 0,};
 
         navigator.geolocation.getCurrentPosition(success,error,options);
@@ -79,7 +83,8 @@ const CuantoFalta = () => {
   // Una vez que se conoce la localizacion, se muestra la app normalmente.
   return (
       <div className='row'>
-        <div className='col-md-6 col-11 mx-auto mt-5 mb-1 text-center'>
+        <div className='loadedPageAnimation col-md-6 col-11 mx-auto mt-5 mb-1 text-center'>
+          <h1 >Cuanto Falta?</h1>
           <form onSubmit={handleSubmit} className='mt-4'>
             <input
               type="text"
@@ -89,23 +94,7 @@ const CuantoFalta = () => {
             <button className='btn btn-primary' type="submit">Cuanto Falta?</button>
           </form>
           <div>
-            <h1>{ linea }</h1>
-            <ul>
-              {extractArrayWithAllTripHeadsigns(datosFiltrados).map((colectivo) =>(
-                <li>
-                  <span>{colectivo[0]} - {colectivo[1]}</span>
-                </li>
-              ))}
-            </ul>
-            <ul>
-                    {datosFiltrados.map((colectivo, index) => (
-                        <li key={index}>
-                            <span>{colectivo.trip_headsign} </span>
-                            <span>{colectivo.route_short_name}</span>
-                            <span> a {distanceBetweenTwoPoints(colectivo.latitude,colectivo.longitude,latitude,longitude)} km</span>
-                        </li>
-                    ))}
-            </ul>
+            <BondiAccordion latitude={latitude} longitude={longitude} datosFiltrados={datosFiltrados} shortNameBondis={extractArrayWithAllRoutesShortNames(datosFiltrados)}/>
           </div>
         </div>
       </div>

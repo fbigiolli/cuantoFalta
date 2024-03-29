@@ -23,21 +23,22 @@ export function distanceBetweenTwoPoints(latitude1,longitude1,latitude2,longitud
   return dosDecimales(haversine(p1,p2) / 1000);
 }
 
-export function extractArrayWithAllTripHeadsigns(datosFiltrados){
+export function extractArrayWithAllRoutesShortNames(datosFiltrados){
+  // Extraer todos los route_short_name en un nuevo array
+  const nombresRouteShort = datosFiltrados.map(colectivo => colectivo.route_short_name);
 
-  // Extraer todos los route_short_name y trip_headsign en un nuevo array de tuplas
-  const nombresRouteShort = datosFiltrados.map(colectivo => [colectivo.route_short_name, colectivo.trip_headsign]);
+  // Eliminar duplicados usando Set
+  const nombresSinRepetir = [...new Set(nombresRouteShort)];
 
-  // Usar un objeto para eliminar duplicados basados en las tuplas
-  const uniqueTuples = {};
-  nombresRouteShort.forEach(tupla => {
-      const key = JSON.stringify(tupla);
-      uniqueTuples[key] = tupla;
-  });
-
-  // Extraer solo las tuplas únicas
-  const nombresSinRepetir = Object.values(uniqueTuples);
-
-  console.log(nombresSinRepetir);
   return nombresSinRepetir;
+}
+
+export function extractTripHeadsignsByRouteShortName(datosFiltrados, routeShortName) {
+  // Filtrar los colectivos que tienen el route_short_name dado
+  const colectivosConRouteShortName = datosFiltrados.filter(colectivo => colectivo.route_short_name === routeShortName);
+
+  // Extraer todos los trip_headsign de los colectivos filtrados
+  const tripHeadsigns = colectivosConRouteShortName.map(colectivo => colectivo.trip_headsign);
+
+  return tripHeadsigns;
 }
