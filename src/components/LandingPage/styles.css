@@ -1,7 +1,12 @@
 
 .textInAnimation{
-    animation: textInAnimation 2s ease 0s 1 normal forwards;
+    animation: textInAnimation 1s ease 0s 1 normal forwards;
 }
+
+.image-container {
+    margin-bottom: -100px; /* Puedes ajustar el espacio inferior según tus necesidades */
+}
+
 
 @keyframes textInAnimation {
 	0% {

@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from 'react';
 
 // utils import
-import {fetchFromAPI , distanceBetweenTwoPoints} from '../utils';
+import {fetchFromAPI , distanceBetweenTwoPoints, extractArrayWithAllTripHeadsigns} from '../utils';
 
 // components import
 import LandingPage from '../LandingPage/LandingPage';
@@ -17,7 +17,7 @@ const CuantoFalta = () => {
   const [longitude, setLongitude] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Hook que se encarga de obtener la localizacion del usuario al abrir la app.
+  //Hook que se encarga de obtener la localizacion del usuario al abrir la app.
   useEffect(() => {
     const getLocation = async () => {
       
@@ -78,26 +78,35 @@ const CuantoFalta = () => {
 
   // Una vez que se conoce la localizacion, se muestra la app normalmente.
   return (
-      <div>
-        <form onSubmit={handleSubmit} className='mt-4'>
-          <input
-            type="text"
-            name="linea"
-            placeholder="Ingrese un parámetro"
-          />
-          <button className='btn btn-primary' type="submit">Enviar</button>
-        </form>
-        <div>
-          <h1>{ linea }</h1>
-          <ul>
-                  {datosFiltrados.map((colectivo, index) => (
-                      <li key={index}>
-                          <span>{colectivo.trip_headsign} </span>
-                          <span>{colectivo.route_short_name}</span>
-                          <span> a {distanceBetweenTwoPoints(colectivo.latitude,colectivo.longitude,latitude,longitude)} km</span>
-                      </li>
-                  ))}
-          </ul>
+      <div className='row'>
+        <div className='col-md-6 col-11 mx-auto mt-5 mb-1 text-center'>
+          <form onSubmit={handleSubmit} className='mt-4'>
+            <input
+              type="text"
+              name="linea"
+              placeholder="Ingrese un parámetro"
+            />
+            <button className='btn btn-primary' type="submit">Cuanto Falta?</button>
+          </form>
+          <div>
+            <h1>{ linea }</h1>
+            <ul>
+              {extractArrayWithAllTripHeadsigns(datosFiltrados).map((colectivo) =>(
+                <li>
+                  <span>{colectivo[0]} - {colectivo[1]}</span>
+                </li>
+              ))}
+            </ul>
+            <ul>
+                    {datosFiltrados.map((colectivo, index) => (
+                        <li key={index}>
+                            <span>{colectivo.trip_headsign} </span>
+                            <span>{colectivo.route_short_name}</span>
+                            <span> a {distanceBetweenTwoPoints(colectivo.latitude,colectivo.longitude,latitude,longitude)} km</span>
+                        </li>
+                    ))}
+            </ul>
+          </div>
         </div>
       </div>
     );

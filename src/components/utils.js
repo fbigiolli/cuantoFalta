@@ -22,3 +22,22 @@ export function distanceBetweenTwoPoints(latitude1,longitude1,latitude2,longitud
   // Haversine devuelve en metros, paso a km y trunco decimales
   return dosDecimales(haversine(p1,p2) / 1000);
 }
+
+export function extractArrayWithAllTripHeadsigns(datosFiltrados){
+
+  // Extraer todos los route_short_name y trip_headsign en un nuevo array de tuplas
+  const nombresRouteShort = datosFiltrados.map(colectivo => [colectivo.route_short_name, colectivo.trip_headsign]);
+
+  // Usar un objeto para eliminar duplicados basados en las tuplas
+  const uniqueTuples = {};
+  nombresRouteShort.forEach(tupla => {
+      const key = JSON.stringify(tupla);
+      uniqueTuples[key] = tupla;
+  });
+
+  // Extraer solo las tuplas únicas
+  const nombresSinRepetir = Object.values(uniqueTuples);
+
+  console.log(nombresSinRepetir);
+  return nombresSinRepetir;
+}
