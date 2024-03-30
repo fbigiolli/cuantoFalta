@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cuantoFalta/static/css/main.294c4cb4.css",
+    "main.js": "/cuantoFalta/static/js/main.abb774a4.js",
+    "static/media/bus-loading.gif": "/cuantoFalta/static/media/bus-loading.d7852b8f97ea2b797602.gif",
+    "static/media/bondi.png": "/cuantoFalta/static/media/bondi.745b8b0be38bfb2711b1.png",
+    "index.html": "/cuantoFalta/index.html",
+    "main.294c4cb4.css.map": "/cuantoFalta/static/css/main.294c4cb4.css.map",
+    "main.abb774a4.js.map": "/cuantoFalta/static/js/main.abb774a4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.294c4cb4.css",
+    "static/js/main.abb774a4.js"
+  ]
+}
