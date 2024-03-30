@@ -3,6 +3,8 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import { distanceBetweenTwoPoints } from '../utils';
 
+import busImg from './images/bondi.png'
+
 function BondiAccordion(props) {
   return (
     <Accordion flush>
@@ -20,14 +22,19 @@ function BondiAccordion(props) {
               })
               // Finalmente, se muestran en el body del acordeon.
               .map((colectivo, index) => (
-                <li key={index}>
-                  <span>{colectivo.trip_headsign}</span>
-                  <span>{colectivo.route_short_name}</span>
-                  <span> a {distanceBetweenTwoPoints(colectivo.latitude, colectivo.longitude, props.latitude, props.longitude)} km</span>
-                </li>
+                <div className='text-start' style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ marginRight: '10px' }}>
+                    <img src={busImg} alt="Bus"style={{ maxWidth: '50px', height: '30px' }}></img>
+                  </div>
+                  <div>
+                    <span>{colectivo.trip_headsign} </span>
+                    <span>{colectivo.route_short_name} </span>
+                    <span>a {distanceBetweenTwoPoints(colectivo.latitude, colectivo.longitude, props.latitude, props.longitude)} km</span>
+                  </div>
+                </div>
               ))
+              
             }
-
           </Accordion.Body>
         </Accordion.Item>
       ))}
