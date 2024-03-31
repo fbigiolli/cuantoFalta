@@ -1,21 +1,20 @@
 
 .loadedPageAnimation{
-    animation: elementAnimation 1s ease 0s 1 normal forwards;
+    animation: loadedPageAnimation 1s ease 0s 1 normal forwards;
 }
 
 .image-container {
-    margin-bottom: 100px; /* Puedes ajustar el espacio inferior según tus necesidades */
+    margin-bottom: 100px;
 }
 
-
-@keyframes elementAnimation {
+@keyframes loadedPageAnimation {
 	0% {
 		opacity: 0;
-		transform: translateY(-250px);
+		transform: translateX(-50px);
 	}
 
 	100% {
 		opacity: 1;
-		transform: translateY(0);
+		transform: translateX(0);
 	}
 }

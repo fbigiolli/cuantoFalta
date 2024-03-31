@@ -3,7 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 
 function About() {
     return(
-        <Accordion>
+        <Accordion flush>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Como funciona?</Accordion.Header>
           <Accordion.Body>
@@ -12,8 +12,6 @@ function About() {
           </Accordion.Body>
         </Accordion.Item>
         </Accordion>
-
-
     )
 }
 

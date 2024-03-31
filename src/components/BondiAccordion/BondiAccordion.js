@@ -5,9 +5,16 @@ import { distanceBetweenTwoPoints } from '../utils';
 
 import busImg from './images/bondi.png'
 
+import './styles.css';
+
 function BondiAccordion(props) {
+
+  if (props.datosFiltrados.length === 0) {
+    return null;
+  }
+
   return (
-    <Accordion flush>
+    <Accordion flush className='accordionInAnimation'>
       {props.shortNameBondis.map((shortName, index) => (
         <Accordion.Item eventKey={index.toString()} key={index}>
           <Accordion.Header>{shortName}</Accordion.Header>
